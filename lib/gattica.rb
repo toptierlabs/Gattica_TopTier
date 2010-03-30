@@ -26,7 +26,7 @@ require 'gattica/data_point'
 
 module Gattica
   
-  VERSION = '0.3.1'
+  VERSION = '0.3.2.scottp'
   
   # Creates a new instance of Gattica::Engine and gets us going. Please see the README for usage docs.
   #
@@ -158,6 +158,7 @@ module Gattica
       query_string = build_query_string(args,@profile_id)
         @logger.debug(query_string) if @debug
       data = do_http_get("/analytics/feeds/data?#{query_string}")
+      #data = do_http_get("/analytics/feeds/data?ids=ga%3A915568&metrics=ga%3Avisits&segment=gaid%3A%3A-7&start-date=2010-03-29&end-date=2010-03-29&max-results=50")
       return DataSet.new(Hpricot.XML(data))
     end
     
@@ -201,6 +202,7 @@ module Gattica
     # or manually by the user since the header must include the token)
     def set_http_headers
       @headers['Authorization'] = "GoogleLogin auth=#{@token}"
+      @headers['GData-Version']= '2'
     end
     
     
@@ -222,7 +224,10 @@ module Gattica
           sort[0..0] == '-' ? "-ga:#{sort[1..-1]}" : "ga:#{sort}"  # if the first character is a dash, move it before the ga:
         end.join(',')
       end
-      
+      unless args[:segment].empty?
+        output += "&segment=#{args[:segment]}"
+      end
+
       # TODO: update so that in regular expression filters (=~ and !~), any initial special characters in the regular expression aren't also picked up as part of the operator (doesn't cause a problem, but just feels dirty)
       unless args[:filters].empty?    # filters are a little more complicated because they can have all kinds of modifiers
         output += '&filters=' + args[:filters].collect do |filter|

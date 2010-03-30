@@ -1,3 +1,6 @@
+== 0.3.2.scottp
+  * scottp Added Analytics API v2 header, and basic support for "segment" argument.
+
 == 0.3.2
   * er1c updated to use standard Ruby CSV library
 
