@@ -224,7 +224,7 @@ module Gattica
           sort[0..0] == '-' ? "-ga:#{sort[1..-1]}" : "ga:#{sort}"  # if the first character is a dash, move it before the ga:
         end.join(',')
       end
-      unless args[:segment].empty?
+      unless args[:segment].nil?
         output += "&segment=#{args[:segment]}"
       end
 
