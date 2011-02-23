@@ -11,6 +11,7 @@ require 'hpricot'
 require 'yaml'
 
 # internal
+require 'gattica/version'
 require 'gattica/core_extensions'
 require 'gattica/convertible'
 require 'gattica/exceptions'
@@ -25,8 +26,6 @@ require 'gattica/data_point'
 # Please see the README for usage docs.
 
 module Gattica
-  
-  VERSION = '0.3.2.scottp'
   
   # Creates a new instance of Gattica::Engine and gets us going. Please see the README for usage docs.
   #
