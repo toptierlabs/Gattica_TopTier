@@ -12,7 +12,7 @@ require 'yaml'
 
 # internal
 require 'gattica/version'
-require 'gattica/core_extensions'
+require 'gattica/hash_extensions'
 require 'gattica/convertible'
 require 'gattica/exceptions'
 require 'gattica/user'

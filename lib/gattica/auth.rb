@@ -18,6 +18,7 @@ module Gattica
     # Try to authenticate the user
     def initialize(http, user)
       options = OPTIONS.merge(user.to_h)
+      options.extend HashExtensions
       
       response, data = http.post(SCRIPT_NAME, options.to_query, HEADERS)
       if response.code != '200'

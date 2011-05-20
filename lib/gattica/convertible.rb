@@ -10,7 +10,7 @@ module Gattica
       instance_variables.each do |var|
         output.merge!({ var[1..-1] => instance_variable_get(var) }) unless var == '@xml'    # exclude the whole XML dump
       end
-      output
+      output.tap { |h| h.include HashExtensions }
     end
     
     # output nice inspect syntax
