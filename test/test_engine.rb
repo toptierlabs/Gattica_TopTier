@@ -1,4 +1,4 @@
-require File.expand_path('../helper', __FILE__)
+require File.dirname(__FILE__) + '/helper'
  
 class TestEngine < Test::Unit::TestCase
   def setup

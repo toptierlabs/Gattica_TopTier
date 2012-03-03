@@ -9,7 +9,6 @@ module Gattica
     
     include Convertible
 
-    VERSION = "0.4.3"
     SCRIPT_NAME = '/accounts/ClientLogin'
     HEADERS = { 'Content-Type' => 'application/x-www-form-urlencoded', 'User-Agent' => 'Ruby Net::HTTP' }   # Google asks that you be nice and provide a user-agent string
     OPTIONS = { :source => 'gattica-'+VERSION, :service => 'analytics' }                                    # Google asks that you provide the name of your app as a 'source' parameter in your POST
@@ -19,7 +18,6 @@ module Gattica
     # Try to authenticate the user
     def initialize(http, user)
       options = OPTIONS.merge(user.to_h)
-      options.extend HashExtensions
       
       response, data = http.post(SCRIPT_NAME, options.to_query, HEADERS)
       if response.code != '200'
